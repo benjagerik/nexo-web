@@ -346,16 +346,75 @@ document.addEventListener('DOMContentLoaded', () => {
                     condEl.style.display = val === 'si' ? 'block' : 'none';
                 }
             }
+            if (inputName === 'nw_tiene_logo') {
+                const condEl = document.getElementById('nw_cond_logo');
+                if (condEl) {
+                    condEl.style.display = val === 'si' ? 'block' : 'none';
+                }
+            }
         };
 
-        window.nwSubmitForm = () => {
+        window.nwSubmitForm = async () => {
             if (!validateStep(currentStep)) return;
 
             const formData = new FormData(intakeForm);
             const data = {};
             formData.forEach((value, key) => {
-                data[key] = value;
+                if (typeof value === 'string') {
+                    data[key] = value;
+                }
             });
+
+            let logoUrl = '';
+            const logoFileEl = document.getElementById('nw_logo_file');
+            if (logoFileEl && logoFileEl.files && logoFileEl.files.length > 0 && data.nw_tiene_logo === 'si') {
+                const submitBtn = document.querySelector('.nw-step[data-step="5"] button') || document.querySelector('.nw-next-btn') || document.querySelector('button[onclick="nwSubmitForm()"]');
+                const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Enviar';
+                
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner"></span> Subiendo logo...';
+                }
+
+                const file = logoFileEl.files[0];
+                const fileData = new FormData();
+                fileData.append('file', file);
+
+                // Try file.io first (14 days retention)
+                try {
+                    const response = await fetch('https://file.io', {
+                        method: 'POST',
+                        body: fileData
+                    });
+                    const res = await response.json();
+                    if (res.success) {
+                        logoUrl = res.link;
+                    } else {
+                        throw new Error("file.io upload failed");
+                    }
+                } catch (e) {
+                    console.warn("file.io failed, trying tmpfiles.org...", e);
+                    // Fallback to tmpfiles.org (2 hours retention)
+                    try {
+                        const response = await fetch('https://tmpfiles.org/api/v1/upload', {
+                            method: 'POST',
+                            body: fileData
+                        });
+                        const res = await response.json();
+                        if (res.status === 'success') {
+                            logoUrl = res.data.url;
+                        }
+                    } catch (e2) {
+                        console.error("All upload fallbacks failed:", e2);
+                        logoUrl = 'Error al subir archivo (enviar por chat)';
+                    }
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            }
 
             const message = `*SOLICITUD DE PRESUPUESTO — NEXO DIGITAL*\n\n` +
                 `👤 *Contacto:* ${data.nw_nombre_contacto}\n` +
@@ -367,7 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 `📘 *Facebook:* ${data.nw_facebook || 'No especifica'}\n\n` +
                 `🎨 *Material Visual:*\n` +
                 `• ¿Tiene logo?: ${data.nw_tiene_logo === 'si' ? 'Sí' : 'No, necesita diseño'}\n` +
-                `• Enlace a fotos/logo: ${data.nw_links_fotos || 'No proporciona'}\n\n` +
+                (data.nw_tiene_logo === 'si' && logoUrl ? `• Logo subido: ${logoUrl}\n` : '') +
+                `• Enlace a fotos adicionales: ${data.nw_links_fotos || 'No proporciona'}\n\n` +
                 `📐 *Diseño & Referencias:*\n` +
                 `• ¿Tiene colores?: ${data.nw_tiene_colores === 'si' ? 'Sí: ' + (data.nw_color_primario || '') : 'No, prefiere propuesta'}\n` +
                 `• Web de referencia: ${data.nw_webs_referencia || 'Ninguna'}\n\n` +
