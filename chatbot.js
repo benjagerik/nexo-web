@@ -124,7 +124,6 @@ const ChatBot = (() => {
             hasGreeted = true;
             showTypingThenRespond(responses.greeting);
         }
-        setTimeout(() => inputEl.focus(), 300);
     }
 
     function close() {

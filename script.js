@@ -91,27 +91,296 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => sectionObserver.observe(section));
 
-    // ── Contact form handling ──
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('button[type="submit"]');
-        const originalHTML = btn.innerHTML;
-        btn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 6L9 17l-5-5"/>
-            </svg>
-            ¡Mensaje enviado!
-        `;
-        btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        btn.disabled = true;
-        setTimeout(() => {
-            btn.innerHTML = originalHTML;
-            btn.style.background = '';
-            btn.disabled = false;
-            form.reset();
-        }, 3000);
-    });
+    // ── Typewriter Effect ──
+    const twWord = document.getElementById('tw-word');
+    if (twWord) {
+        const words = ['venden.', 'facturan.', 'impactan.', 'convierten.'];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 150;
+
+        const type = () => {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                twWord.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 75;
+            } else {
+                twWord.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        };
+
+        setTimeout(type, 1000);
+    }
+
+    // ── Three.js 3D Background ──
+    const canvas = document.getElementById('bg3d');
+    if (canvas && typeof THREE !== 'undefined') {
+        let scene, camera, renderer, objects = [];
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        const initThree = () => {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const geometries = [
+                new THREE.IcosahedronGeometry(7, 1),
+                new THREE.TorusKnotGeometry(4, 1.2, 64, 8, 2, 3),
+                new THREE.OctahedronGeometry(5, 1),
+                new THREE.IcosahedronGeometry(6, 1)
+            ];
+
+            const colors = [0x6366f1, 0x06b6d4, 0x8b5cf6, 0x06b6d4];
+
+            geometries.forEach((geom, idx) => {
+                const mat = new THREE.MeshBasicMaterial({
+                    color: colors[idx],
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.12
+                });
+                const mesh = new THREE.Mesh(geom, mat);
+                
+                if (idx === 0) mesh.position.set(-14, 8, -5);
+                else if (idx === 1) mesh.position.set(15, -9, -8);
+                else if (idx === 2) mesh.position.set(11, 9, -10);
+                else mesh.position.set(-13, -11, -6);
+
+                scene.add(mesh);
+                objects.push(mesh);
+            });
+        };
+
+        const onWindowResize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+
+        window.addEventListener('resize', onWindowResize);
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX - window.innerWidth / 2) / 120;
+            mouseY = (e.clientY - window.innerHeight / 2) / 120;
+        });
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            camera.position.x = targetX;
+            camera.position.y = -targetY;
+            camera.lookAt(scene.position);
+
+            objects.forEach((obj, idx) => {
+                obj.rotation.x += 0.0015 * (idx + 1);
+                obj.rotation.y += 0.002 * (idx + 1);
+                obj.rotation.z = window.scrollY * 0.0003 * (idx + 1);
+            });
+
+            renderer.render(scene, camera);
+        };
+
+        initThree();
+        animate();
+    }
+
+    // ── 5-Step Intake Form Lógica ──
+    const intakeForm = document.getElementById('nwIntakeForm');
+    if (intakeForm) {
+        let currentStep = 1;
+        const totalSteps = 5;
+        const stepNames = [
+            "Tu negocio",
+            "Contacto y redes",
+            "Material visual",
+            "Diseño y funciones",
+            "Información final"
+        ];
+
+        const steps = intakeForm.querySelectorAll('.nw-step');
+        const prevBtn = document.getElementById('nwBtnPrev');
+        const nextBtn = document.getElementById('nwBtnNext');
+        const finalOptions = document.getElementById('nwFinalOptions');
+        const stepLabel = document.getElementById('nwStepLabel');
+        const stepName = document.getElementById('nwStepName');
+        const progressFill = document.getElementById('nwProgressFill');
+        const dotsContainer = document.getElementById('nwStepDots');
+
+        const initDots = () => {
+            dotsContainer.innerHTML = '';
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.createElement('span');
+                dot.className = `nw-dot ${i === 1 ? 'active' : ''}`;
+                dot.addEventListener('click', () => {
+                    if (i < currentStep) {
+                        goToStep(i);
+                    } else if (i > currentStep) {
+                        let canGo = true;
+                        for (let s = currentStep; s < i; s++) {
+                            if (!validateStep(s)) {
+                                canGo = false;
+                                break;
+                            }
+                        }
+                        if (canGo) goToStep(i);
+                    }
+                });
+                dotsContainer.appendChild(dot);
+            }
+        };
+
+        const updateDots = () => {
+            const dots = dotsContainer.querySelectorAll('.nw-dot');
+            dots.forEach((dot, idx) => {
+                const stepNum = idx + 1;
+                dot.className = 'nw-dot';
+                if (stepNum === currentStep) {
+                    dot.classList.add('active');
+                } else if (stepNum < currentStep) {
+                    dot.classList.add('completed');
+                }
+            });
+        };
+
+        const validateStep = (stepNum) => {
+            const stepEl = intakeForm.querySelector(`.nw-step[data-step="${stepNum}"]`);
+            const requiredFields = stepEl.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('field-error');
+                    
+                    const removeError = () => {
+                        if (field.value.trim()) {
+                            field.classList.remove('field-error');
+                            field.removeEventListener('input', removeError);
+                        }
+                    };
+                    field.addEventListener('input', removeError);
+                } else {
+                    field.classList.remove('field-error');
+                }
+            });
+
+            return isValid;
+        };
+
+        const goToStep = (stepNum) => {
+            steps.forEach(s => s.classList.remove('active'));
+            const targetStep = intakeForm.querySelector(`.nw-step[data-step="${stepNum}"]`);
+            targetStep.classList.add('active');
+
+            currentStep = stepNum;
+
+            stepLabel.textContent = `Paso ${currentStep} de ${totalSteps}`;
+            stepName.textContent = stepNames[currentStep - 1];
+            progressFill.style.width = `${(currentStep / totalSteps) * 100}%`;
+
+            if (currentStep === 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'block';
+                finalOptions.style.display = 'none';
+            } else if (currentStep === totalSteps) {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'none';
+                finalOptions.style.display = 'block';
+            } else {
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
+                finalOptions.style.display = 'none';
+            }
+
+            updateDots();
+        };
+
+        window.nwChangeStep = (dir) => {
+            if (dir === 1) {
+                if (validateStep(currentStep)) {
+                    goToStep(currentStep + 1);
+                }
+            } else {
+                goToStep(currentStep - 1);
+            }
+        };
+
+        window.nwToggleSelect = (btn) => {
+            const group = btn.parentElement;
+            const buttons = group.querySelectorAll('.nw-toggle-btn');
+            buttons.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+
+            const inputName = btn.getAttribute('data-toggle');
+            const val = btn.getAttribute('data-value');
+            const hiddenInput = intakeForm.querySelector(`input[name="${inputName}"]`);
+            if (hiddenInput) {
+                hiddenInput.value = val;
+            }
+
+            if (inputName === 'nw_tiene_colores') {
+                const condEl = document.getElementById('nw_cond_colores');
+                if (condEl) {
+                    condEl.style.display = val === 'si' ? 'block' : 'none';
+                }
+            }
+        };
+
+        window.nwSubmitForm = () => {
+            if (!validateStep(currentStep)) return;
+
+            const formData = new FormData(intakeForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            const message = `*SOLICITUD DE PRESUPUESTO — NEXO DIGITAL*\n\n` +
+                `👤 *Contacto:* ${data.nw_nombre_contacto}\n` +
+                `📞 *WhatsApp:* ${data.nw_whatsapp}\n` +
+                `🏢 *Empresa:* ${data.nw_empresa}\n` +
+                `🗂️ *Rubro:* ${data.nw_rubro}\n` +
+                `📝 *Descripción:* ${data.nw_descripcion}\n\n` +
+                `🌐 *Instagram:* ${data.nw_instagram || 'No especifica'}\n` +
+                `📘 *Facebook:* ${data.nw_facebook || 'No especifica'}\n\n` +
+                `🎨 *Material Visual:*\n` +
+                `• ¿Tiene logo?: ${data.nw_tiene_logo === 'si' ? 'Sí' : 'No, necesita diseño'}\n` +
+                `• Enlace a fotos/logo: ${data.nw_links_fotos || 'No proporciona'}\n\n` +
+                `📐 *Diseño & Referencias:*\n` +
+                `• ¿Tiene colores?: ${data.nw_tiene_colores === 'si' ? 'Sí: ' + (data.nw_color_primario || '') : 'No, prefiere propuesta'}\n` +
+                `• Web de referencia: ${data.nw_webs_referencia || 'Ninguna'}\n\n` +
+                `💬 *Comentarios:* ${data.nw_adicional || 'Ninguno'}\n` +
+                `🔍 *Nos conoció por:* ${data.nw_como_conociste || 'No especifica'}`;
+
+            const encodedText = encodeURIComponent(message);
+            const waUrl = `https://wa.me/5493795051607?text=${encodedText}`;
+            window.open(waUrl, '_blank');
+        };
+
+        initDots();
+    }
 
     // ── FAQ Accordion ──
     document.querySelectorAll('.faq-question').forEach(btn => {

@@ -14,6 +14,8 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
+    <!-- Canvas para el fondo 3D de Three.js -->
+    <canvas id="bg3d"></canvas>
 
     <!-- ═══════════════════ NAVBAR ═══════════════════ -->
     <nav id="navbar">
@@ -52,8 +54,7 @@
                 Agencia de Diseño & Desarrollo Web
             </div>
             <h1 class="hero-title reveal">
-                Creamos experiencias digitales que
-                <span class="gradient-text">impulsan tu negocio</span>
+                Creamos experiencias digitales que <span class="tw-word" id="tw-word"></span><span class="tw-cursor">|</span>
             </h1>
             <p class="hero-subtitle reveal">
                 Conectamos marcas con resultados. Diseñamos y desarrollamos sitios web profesionales, 
@@ -82,10 +83,6 @@
                     <span class="stat-label">Años de Experiencia</span>
                 </div>
             </div>
-        </div>
-        <div class="hero-scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -191,37 +188,16 @@
                 <h2 class="section-title">Proyectos que <span class="gradient-text">hablan por sí solos</span></h2>
                 <p class="section-desc">Una selección de nuestros trabajos más recientes. Cada proyecto refleja nuestro compromiso con la excelencia.</p>
             </div>
-            <div class="portfolio-grid">
-                <!-- Project 1 -->
-                <div class="portfolio-card reveal">
+            <div class="portfolio-grid single-project">
+                <!-- Project 1 (Real Case Study) -->
+                <div class="portfolio-card reveal featured-project">
                     <div class="portfolio-image">
-                        <img src="assets/proyecto-restaurante.png" alt="Sitio web de Sabores del Sur" loading="lazy">
+                        <img src="assets/proyecto-antar.png" alt="Sitio web de ANTAR Amoblamientos" loading="lazy">
                         <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Sitio Web</span>
-                            <h3>Sabores del Sur</h3>
-                            <p>Restaurante & Bar — Diseño web completo con sistema de reservas online</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="portfolio-card reveal">
-                    <div class="portfolio-image">
-                        <img src="assets/proyecto-fitness.png" alt="Sitio web de Vita Fitness" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Landing Page</span>
-                            <h3>Vita Fitness</h3>
-                            <p>Centro de Entrenamiento — Landing page con planes de membresía</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="portfolio-card reveal">
-                    <div class="portfolio-image">
-                        <img src="assets/proyecto-moda.png" alt="Tienda online Luna Store" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">E-Commerce</span>
-                            <h3>Luna Store</h3>
-                            <p>Tienda de Moda — E-commerce con catálogo y pasarela de pagos</p>
+                            <span class="portfolio-tag">Proyecto Destacado</span>
+                            <h3>ANTAR Amoblamientos</h3>
+                            <p>Mueblería de Diseño a Medida — SPA premium nórdico-industrial con cotizador automatizado conectado directamente a WhatsApp.</p>
+                            <a href="https://antarmuebles.netlify.app/" target="_blank" class="portfolio-btn">Ver Web en Vivo</a>
                         </div>
                     </div>
                 </div>
@@ -229,76 +205,58 @@
         </div>
     </section>
 
-    <!-- ═══════════════════ ESTILOS ═══════════════════ -->
-    <section id="estilos" class="styles-showcase">
+    <!-- ═══════════════════ DISEÑO ADAPTATIVO ═══════════════════ -->
+    <section id="adaptabilidad" class="adaptive-section">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-tag">Estilos</span>
-                <h2 class="section-title">Elegí el estilo que <span class="gradient-text">mejor te represente</span></h2>
-                <p class="section-desc">Cada marca tiene su personalidad. Diseñamos tu sitio web adaptado al estilo que mejor conecte con tu público.</p>
+                <span class="section-tag">Diseño Adaptativo</span>
+                <h2 class="section-title">Tu sitio web impecable en <span class="gradient-text">cualquier pantalla</span></h2>
+                <p class="section-desc">El 80% de tus clientes te buscarán desde el celular. Diseñamos con un enfoque fluido e interactivo que garantiza la mejor experiencia de usuario en computadoras, tablets y smartphones.</p>
             </div>
-            <div class="styles-grid">
-                <!-- Style 1: Minimalist -->
-                <div class="style-card reveal">
-                    <div class="style-image">
-                        <img src="assets/estilo-minimalista.png" alt="Ejemplo de diseño web minimalista" loading="lazy">
-                        <div class="style-image-overlay"></div>
-                    </div>
-                    <div class="style-info">
-                        <div class="style-tag-row">
-                            <span class="style-tag style-tag-warm">Minimalista</span>
+            <div class="adaptive-grid">
+                <div class="adaptive-content reveal">
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
                         </div>
-                        <h3>Elegancia en la simplicidad</h3>
-                        <p>Espacios amplios, tipografía refinada y paleta neutra. Ideal para marcas premium, cafeterías boutique, estudios de arquitectura y profesionales independientes.</p>
-                        <ul class="style-traits">
-                            <li>Mucho espacio en blanco</li>
-                            <li>Tipografía elegante</li>
-                            <li>Paleta neutra y cálida</li>
-                        </ul>
+                        <div>
+                            <h3>Optimización Móvil Primero</h3>
+                            <p>Estructuramos la información pensando en el pulgar y la navegación rápida del usuario móvil. Cero textos minúsculos o botones difíciles de tocar.</p>
+                        </div>
+                    </div>
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                        </div>
+                        <div>
+                            <h3>Velocidad de Carga Extrema</h3>
+                            <p>Las páginas lentas pierden ventas. Minimizamos el código y optimizamos las imágenes para que tu sitio cargue en menos de 2 segundos.</p>
+                        </div>
+                    </div>
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div>
+                            <h3>Adaptabilidad Fluida (Liquid Layouts)</h3>
+                            <p>Nuestras webs no solo se achican; se reorganizan de forma inteligente adaptando tipografías y contenedores para aprovechar cada pixel de la pantalla.</p>
+                        </div>
                     </div>
                 </div>
-                <!-- Style 2: Corporate Dark -->
-                <div class="style-card reveal">
-                    <div class="style-image">
-                        <img src="assets/estilo-corporativo.png" alt="Ejemplo de diseño web corporativo oscuro" loading="lazy">
-                        <div class="style-image-overlay"></div>
-                    </div>
-                    <div class="style-info">
-                        <div class="style-tag-row">
-                            <span class="style-tag style-tag-cool">Corporativo Dark</span>
+                <div class="adaptive-visual reveal">
+                    <div class="visual-mockup-wrapper">
+                        <div class="mockup-laptop">
+                            <div class="screen-laptop">
+                                <div class="laptop-website-mockup"></div>
+                            </div>
                         </div>
-                        <h3>Autoridad y confianza</h3>
-                        <p>Fondos oscuros, acentos brillantes y efectos glassmorphism. Perfecto para empresas de tecnología, consultoras, fintech y startups que quieren transmitir solidez.</p>
-                        <ul class="style-traits">
-                            <li>Tema oscuro premium</li>
-                            <li>Efectos de vidrio y blur</li>
-                            <li>Gradientes sofisticados</li>
-                        </ul>
+                        <div class="mockup-phone">
+                            <div class="screen-phone">
+                                <div class="phone-website-mockup"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Style 3: Vibrant -->
-                <div class="style-card reveal">
-                    <div class="style-image">
-                        <img src="assets/estilo-vibrante.png" alt="Ejemplo de diseño web vibrante y creativo" loading="lazy">
-                        <div class="style-image-overlay"></div>
-                    </div>
-                    <div class="style-info">
-                        <div class="style-tag-row">
-                            <span class="style-tag style-tag-vibrant">Vibrante</span>
-                        </div>
-                        <h3>Energía y creatividad</h3>
-                        <p>Colores audaces, formas dinámicas y diseño llamativo. Ideal para agencias creativas, marcas jóvenes, tiendas de moda y negocios que quieren destacar.</p>
-                        <ul class="style-traits">
-                            <li>Colores bold y gradientes</li>
-                            <li>Formas dinámicas</li>
-                            <li>Diseño llamativo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="styles-cta reveal">
-                <p>¿No encontrás tu estilo? <strong>Lo creamos juntos.</strong> Cada proyecto es único y adaptado a tu marca.</p>
-                <a href="#contacto" class="btn btn-primary">Consultá por tu diseño <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
             </div>
         </div>
     </section>
@@ -652,35 +610,120 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form reveal" id="contactForm">
-                    <div class="form-group">
-                        <label for="nombre">Nombre completo</label>
-                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                <form class="contact-form reveal nw-form-wrap" id="nwIntakeForm" onsubmit="event.preventDefault();">
+                    <!-- Form Header Progress -->
+                    <div class="nw-form-header">
+                        <span id="nwStepLabel" class="nw-step-label">Paso 1 de 5</span>
+                        <h3 id="nwStepName" class="nw-step-name">Tu negocio</h3>
+                        <div class="nw-progress-bar">
+                            <div id="nwProgressFill" class="nw-progress-fill" style="width: 20%;"></div>
+                        </div>
+                        <div id="nwStepDots" class="nw-step-dots"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+
+                    <!-- Paso 1: Tu negocio -->
+                    <div class="nw-step active" data-step="1">
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_empresa">Nombre de tu empresa o marca</label>
+                            <input type="text" id="nw_empresa" name="nw_empresa" placeholder="Ej. ANTAR Amoblamientos" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_rubro">¿A qué rubro se dedica?</label>
+                            <input type="text" id="nw_rubro" name="nw_rubro" placeholder="Ej. Mueblería, Estética, Gastronomía" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_descripcion">Describí brevemente tu negocio</label>
+                            <textarea id="nw_descripcion" name="nw_descripcion" rows="3" placeholder="¿Qué vendés o qué servicio ofrecés?" required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="servicio">Servicio de interés</label>
-                        <select id="servicio" name="servicio">
-                            <option value="">Seleccionar servicio</option>
-                            <option value="sitio-web">Sitio Web a Medida</option>
-                            <option value="landing">Landing Page</option>
-                            <option value="ecommerce">Tienda Online</option>
-                            <option value="rediseno">Rediseño Web</option>
-                            <option value="chatbot">Chatbot / Automatización</option>
-                            <option value="otro">Otro</option>
-                        </select>
+
+                    <!-- Paso 2: Contacto y redes -->
+                    <div class="nw-step" data-step="2">
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_nombre_contacto">Nombre del responsable</label>
+                            <input type="text" id="nw_nombre_contacto" name="nw_nombre_contacto" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_whatsapp">Número de WhatsApp</label>
+                            <input type="tel" id="nw_whatsapp" name="nw_whatsapp" placeholder="Ej. 3794123456" required>
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_instagram">Perfil de Instagram</label>
+                            <input type="text" id="nw_instagram" name="nw_instagram" placeholder="Ej. @tu.negocio">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_facebook">Página de Facebook (opcional)</label>
+                            <input type="text" id="nw_facebook" name="nw_facebook" placeholder="Link o nombre de página">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mensaje">Contanos sobre tu proyecto</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describí brevemente qué necesitás..."></textarea>
+
+                    <!-- Paso 3: Material visual -->
+                    <div class="nw-step" data-step="3">
+                        <div class="form-group nw-field">
+                            <label>¿Tenés logotipo actual?</label>
+                            <div class="nw-toggle-group">
+                                <button type="button" class="nw-toggle-btn" data-toggle="nw_tiene_logo" data-value="si" onclick="nwToggleSelect(this)">Sí, tengo</button>
+                                <button type="button" class="nw-toggle-btn selected" data-toggle="nw_tiene_logo" data-value="no" onclick="nwToggleSelect(this)">No, necesito uno</button>
+                            </div>
+                            <input type="hidden" name="nw_tiene_logo" value="no">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_links_fotos">Enlace a fotos de tus trabajos o tu logo (Drive, Dropbox, etc.)</label>
+                            <textarea id="nw_links_fotos" name="nw_links_fotos" rows="3" placeholder="Pegá acá el link con las fotos de tus trabajos o productos para que las sumemos a la web..."></textarea>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        Enviar Mensaje
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                    </button>
+
+                    <!-- Paso 4: Diseño y funciones -->
+                    <div class="nw-step" data-step="4">
+                        <div class="form-group nw-field">
+                            <label>¿Tenés colores de marca definidos?</label>
+                            <div class="nw-toggle-group">
+                                <button type="button" class="nw-toggle-btn" data-toggle="nw_tiene_colores" data-value="si" onclick="nwToggleSelect(this)">Sí</button>
+                                <button type="button" class="nw-toggle-btn selected" data-toggle="nw_tiene_colores" data-value="no" onclick="nwToggleSelect(this)">No, prefiero que propongan</button>
+                            </div>
+                            <input type="hidden" name="nw_tiene_colores" value="no">
+                        </div>
+                        <div class="form-group nw-field" id="nw_cond_colores" style="display: none;">
+                            <label for="nw_color_primario">¿Qué colores te gustaría usar?</label>
+                            <input type="text" id="nw_color_primario" name="nw_color_primario" placeholder="Ej. Azul y blanco, negro y dorado...">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_webs_referencia">Páginas web que te gusten de referencia</label>
+                            <input type="text" id="nw_webs_referencia" name="nw_webs_referencia" placeholder="Ej. www.ejemplo.com">
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Información final -->
+                    <div class="nw-step" data-step="5">
+                        <div class="form-group nw-field">
+                            <label for="nw_adicional">Comentarios adicionales o pedidos especiales</label>
+                            <textarea id="nw_adicional" name="nw_adicional" rows="4" placeholder="Contanos cualquier detalle extra que creas importante..."></textarea>
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_como_conociste">¿Cómo nos conociste?</label>
+                            <select id="nw_como_conociste" name="nw_como_conociste">
+                                <option value="">Seleccionar opción</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="google">Google</option>
+                                <option value="recomendado">Recomendación</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Form Navigation Buttons -->
+                    <div class="nw-form-nav">
+                        <button type="button" id="nwBtnPrev" class="btn btn-ghost" onclick="nwChangeStep(-1)" style="display: none;">Atrás</button>
+                        <button type="button" id="nwBtnNext" class="btn btn-primary" onclick="nwChangeStep(1)">Siguiente</button>
+                        
+                        <div id="nwFinalOptions" style="display: none; width: 100%;">
+                            <button type="button" id="nwBtnDemo" class="btn btn-primary btn-full" onclick="nwSubmitForm()">
+                                Enviar Cotización por WhatsApp
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -753,6 +796,16 @@
         </button>
     </div>
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5493795051607" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 11.95.01c3.178 0 6.161 1.238 8.4 3.48 2.239 2.24 3.479 5.223 3.479 8.402 0 6.549-5.337 11.887-11.892 11.887-2.007 0-3.974-.509-5.729-1.48L0 24zm6.59-4.846c1.666.988 3.309 1.488 5.305 1.49h.005c5.449 0 9.882-4.43 9.886-9.878 0-2.639-1.028-5.122-2.894-6.99A9.8 9.8 0 0 0 11.95 1.83C6.5 1.83 2.067 6.26 2.064 11.71c0 2.062.54 3.74 1.547 5.311L2.64 21.05l4.007-.996zM17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+        </svg>
+        <span class="whatsapp-float-pulse"></span>
+    </a>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
     <script src="chatbot.js"></script>
 </body>
