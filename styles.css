@@ -203,7 +203,7 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 .hero-title {
-    font-family:var(--font-heading); font-size:clamp(2.4rem,5.5vw,4.2rem);
+    font-family:var(--font-heading); font-size:clamp(1.8rem,5vw,3.8rem);
     font-weight:800; line-height:1.15; margin-bottom:24px;
 }
 .hero-subtitle {
@@ -573,6 +573,9 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
 }
 
 /* ── Typewriter Effect ── */
+.tw-line {
+    white-space: nowrap;
+}
 .tw-word {
     display: inline-block;
     background: var(--gradient-accent);
