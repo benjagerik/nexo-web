@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo Digital - Historias de Instagram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: #020005;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            padding: 40px 0;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .story-card {
+            width: 450px;
+            height: 800px;
+            background-color: #05010d;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 35px 25px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instagram-progress {
+            display: flex;
+            gap: 6px;
+            width: 100%;
+            margin-bottom: 45px;
+        }
+        .segment {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+        }
+        .segment.filled {
+            background: #8A2BE2;
+            box-shadow: 0 0 8px #8A2BE2;
+        }
+
+        .neon-graphic {
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid #8A2BE2;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            margin-bottom: 35px;
+            box-shadow: 0 0 35px rgba(138, 43, 226, 0.25), inset 0 0 20px rgba(138, 43, 226, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        .neon-graphic i {
+            font-size: 65px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+        }
+
+        .header-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            color: #ffffff;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .header-title span { color: #8A2BE2; }
+        
+        .body-text {
+            font-size: 16px;
+            color: #cbd5e1;
+            text-align: center;
+            line-height: 1.5;
+            max-width: 340px;
+            margin-bottom: auto;
+        }
+
+        .bottom-navigation {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .folder-tab {
+            width: 72px;
+            height: 76px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.35;
+            transition: all 0.3s ease;
+        }
+
+        .folder-tab svg.folder-svg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        .folder-tab .folder-svg path {
+            fill: rgba(255, 255, 255, 0.01);
+            stroke: rgba(255, 255, 255, 0.12);
+            stroke-width: 2;
+        }
+
+        .tab-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .tab-num { position: absolute; top: 6px; left: 8px; font-size: 8px; font-weight: 700; color: rgba(255,255,255,0.3); }
+        .folder-tab i { font-size: 18px; color: #ffffff; }
+        .tab-text { font-size: 6.5px; font-weight: 700; text-transform: uppercase; text-align: center; color: #94a3b8; white-space: nowrap; }
+
+        .folder-tab.active-tab {
+            opacity: 1;
+            transform: translateY(-10px) scale(1.08);
+        }
+        .folder-tab.active-tab .folder-svg path {
+            fill: rgba(138, 43, 226, 0.12);
+            stroke: #8A2BE2;
+            stroke-width: 2.5;
+            filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.4));
+        }
+        .folder-tab.active-tab .tab-num { color: #8A2BE2; }
+        .folder-tab.active-tab i { color: #00FFA3; text-shadow: 0 0 10px rgba(0, 255, 163, 0.4); }
+        .folder-tab.active-tab .tab-text { color: #ffffff; }
+
+        .indicator-line {
+            width: 90%;
+            height: 2px;
+            background: rgba(255,255,255,0.08);
+            margin: 0 auto 25px;
+            position: relative;
+        }
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            background: #8A2BE2;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 12px #8A2BE2;
+        }
+
+        .brand-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .square-logo {
+            background: #8A2BE2;
+            color: white;
+            font-family: 'Poppins';
+            font-size: 20px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 6px;
+            line-height: 1.2;
+        }
+        .footer-text { font-size: 9px; letter-spacing: 3px; font-weight: 700; color: #ffffff; }
+
+        /* ESTILOS DE CONTACTO */
+        .contact-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            margin-bottom: auto;
+            margin-top: 30px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            border-radius: 18px;
+            padding: 16px 20px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+        }
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(138, 43, 226, 0.12);
+            border: 1px solid rgba(138, 43, 226, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.15);
+        }
+        .contact-item-icon.instagram {
+            color: #E1306C;
+            text-shadow: 0 0 12px rgba(225, 48, 108, 0.5);
+            border-color: rgba(225, 48, 108, 0.3);
+            background: rgba(225, 48, 108, 0.08);
+        }
+        .contact-item-icon.web {
+            color: #00FFA3;
+            text-shadow: 0 0 12px rgba(0, 255, 163, 0.5);
+            border-color: rgba(0, 255, 163, 0.3);
+            background: rgba(0, 255, 163, 0.08);
+        }
+        .contact-item-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+        }
+        .contact-item-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .contact-item-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        /* ESTILOS DE CHATBOT DEMO */
+        .story-card.chatbot-card {
+            background-color: #070514;
+            padding: 35px 20px; /* Aligned vertically to 35px to prevent story navigation jumps */
+            display: flex;
+            flex-direction: column;
+        }
+        .chatbot-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 10px; /* Compacted */
+            margin-bottom: 10px; /* Compacted */
+        }
+        .chatbot-header-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chatbot-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8A2BE2, #4A00E0); /* Cohesive Nexo gradient */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+        }
+        .chatbot-header-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .chatbot-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .chatbot-status {
+            font-size: 12px;
+            color: #00FFA3; /* Teal online indicator */
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .chatbot-status::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #00FFA3;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px #00FFA3;
+        }
+        .chatbot-close-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+        
+        .chatbot-body {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* Reduced gap */
+            flex: 1;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        
+        .chat-bubble {
+            max-width: 88%;
+            border-radius: 18px;
+            padding: 10px 14px; /* Compact padding */
+            font-size: 13px; /* Slightly smaller for fitting text */
+            line-height: 1.4;
+        }
+        
+        .chat-bubble.bot {
+            background: rgba(138, 43, 226, 0.04); /* Dark violet background */
+            border: 1px solid rgba(138, 43, 226, 0.15); /* Purple border */
+            color: #e2e8f0;
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
+        
+        .chat-bubble.user {
+            background: linear-gradient(135deg, #8A2BE2, #4A00E0); /* Signature Nexo gradient */
+            color: #ffffff;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+        }
+        
+        .chat-bubble.bot-large {
+            max-width: 100%;
+            background: rgba(138, 43, 226, 0.04);
+            border: 1px solid rgba(138, 43, 226, 0.15);
+            color: #e2e8f0;
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+            padding: 12px 14px;
+        }
+        
+        .chat-bubble-intro {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .chat-step {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 8px;
+        }
+        .chat-step-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .chat-step-num {
+            width: 18px;
+            height: 18px;
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #d8b4fe;
+        }
+        .chat-step-body {
+            font-size: 12px;
+            color: #94a3b8;
+            padding-left: 26px;
+            line-height: 1.35;
+        }
+        
+        .chat-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 6px;
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+        .chat-bullet {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+        .chat-bullet::before {
+            content: '•';
+            color: #8A2BE2;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .chat-cta {
+            font-weight: 700;
+            color: #ffffff;
+            border-top: 1px solid rgba(138, 43, 226, 0.15);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+        
+        .chatbot-input-bar {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .chatbot-input-field {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: #94a3b8;
+            font-size: 13px;
+            text-align: left;
+        }
+        .chatbot-send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8A2BE2, #4A00E0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 15px;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* ESTILOS DE INDICACIÓN DEL CHATBOT INTRO */
+        .chatbot-hint-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(138, 43, 226, 0.05);
+            border: 1px dashed rgba(138, 43, 226, 0.4);
+            border-radius: 18px;
+            padding: 15px 20px;
+            width: 100%;
+            max-width: 380px;
+            margin-top: 25px;
+            margin-bottom: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        .hint-icon-wrap {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #00FFA3;
+            text-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+            animation: pulse-arrow 1.5s infinite alternate;
+        }
+        .hint-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #e2e8f0;
+            line-height: 1.4;
+            text-align: left;
+        }
+        @keyframes pulse-arrow {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 255, 163, 0.2); }
+            100% { transform: scale(1.1); box-shadow: 0 0 18px rgba(0, 255, 163, 0.5); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-globe"></i></div>
+        <h2 class="header-title">SITIOS <span>WEB</span></h2>
+        <p class="body-text">Diseñamos sitios modernos a medida, enfocados en representar tu marca y convertir visitantes en clientes las 24 horas.</p>
+        <div class="bottom-navigation">
+            <div class="folder-tab active-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">01</div>
+                <div class="tab-inner"><i class="fa-solid fa-globe"></i><div class="tab-text">SITIOS WEB</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">02</div>
+                <div class="tab-inner"><i class="fa-solid fa-rocket"></i><div class="tab-text">LANDINGS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">03</div>
+                <div class="tab-inner"><i class="fa-solid fa-cart-shopping"></i><div class="tab-text">TIENDAS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">04</div>
+                <div class="tab-inner"><i class="fa-solid fa-robot"></i><div class="tab-text">CHATBOTS IA</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">05</div>
+                <div class="tab-inner"><i class="fa-solid fa-wand-magic-sparkles"></i><div class="tab-text">REDISEÑO</div></div>
+            </div>
+        </div>
+        <div class="indicator-line"><div class="indicator-dot" style="left: 10%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-bullseye"></i></div>
+        <h2 class="header-title">LANDING <span>PAGES</span></h2>
+        <p class="body-text">Páginas de aterrizaje estratégicas. Eliminamos distracciones para capturar clientes potenciales y multiplicar tu retorno de inversión.</p>
+        <div class="bottom-navigation">
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">01</div>
+                <div class="tab-inner"><i class="fa-solid fa-globe"></i><div class="tab-text">SITIOS WEB</div></div>
+            </div>
+            <div class="folder-tab active-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">02</div>
+                <div class="tab-inner"><i class="fa-solid fa-rocket"></i><div class="tab-text">LANDINGS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">03</div>
+                <div class="tab-inner"><i class="fa-solid fa-cart-shopping"></i><div class="tab-text">TIENDAS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">04</div>
+                <div class="tab-inner"><i class="fa-solid fa-robot"></i><div class="tab-text">CHATBOTS IA</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">05</div>
+                <div class="tab-inner"><i class="fa-solid fa-wand-magic-sparkles"></i><div class="tab-text">REDISEÑO</div></div>
+            </div>
+        </div>
+        <div class="indicator-line"><div class="indicator-dot" style="left: 30%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div><div class="segment"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-store"></i></div>
+        <h2 class="header-title">TIENDAS <span>ONLINE</span></h2>
+        <p class="body-text">Plataformas E-commerce completas. Control de stock automatizado, pasarelas de pago seguras y una experiencia de compra impecable.</p>
+        <div class="bottom-navigation">
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">01</div>
+                <div class="tab-inner"><i class="fa-solid fa-globe"></i><div class="tab-text">SITIOS WEB</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">02</div>
+                <div class="tab-inner"><i class="fa-solid fa-rocket"></i><div class="tab-text">LANDINGS</div></div>
+            </div>
+            <div class="folder-tab active-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">03</div>
+                <div class="tab-inner"><i class="fa-solid fa-cart-shopping"></i><div class="tab-text">TIENDAS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">04</div>
+                <div class="tab-inner"><i class="fa-solid fa-robot"></i><div class="tab-text">CHATBOTS IA</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">05</div>
+                <div class="tab-inner"><i class="fa-solid fa-wand-magic-sparkles"></i><div class="tab-text">REDISEÑO</div></div>
+            </div>
+        </div>
+        <div class="indicator-line"><div class="indicator-dot" style="left: 50%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-robot"></i></div>
+        <h2 class="header-title">CHATBOTS <span>CON IA</span></h2>
+        <p class="body-text">Automatización de alto nivel. Asistentes inteligentes que responden dudas complejas, califican leads y venden por ti 24/7.</p>
+        <div class="bottom-navigation">
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">01</div>
+                <div class="tab-inner"><i class="fa-solid fa-globe"></i><div class="tab-text">SITIOS WEB</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">02</div>
+                <div class="tab-inner"><i class="fa-solid fa-rocket"></i><div class="tab-text">LANDINGS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">03</div>
+                <div class="tab-inner"><i class="fa-solid fa-cart-shopping"></i><div class="tab-text">TIENDAS</div></div>
+            </div>
+            <div class="folder-tab active-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">04</div>
+                <div class="tab-inner"><i class="fa-solid fa-robot"></i><div class="tab-text">CHATBOTS IA</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">05</div>
+                <div class="tab-inner"><i class="fa-solid fa-wand-magic-sparkles"></i><div class="tab-text">REDISEÑO</div></div>
+            </div>
+        </div>
+        <div class="indicator-line"><div class="indicator-dot" style="left: 70%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div><div class="segment filled"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h2 class="header-title">REDISEÑO <span>WEB</span></h2>
+        <p class="body-text">Evoluciona tu marca. Modernizamos tu sitio actual con diseño UX/UI avanzado para acelerar la velocidad de carga y maximizar la conversión.</p>
+        <div class="bottom-navigation">
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">01</div>
+                <div class="tab-inner"><i class="fa-solid fa-globe"></i><div class="tab-text">SITIOS WEB</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">02</div>
+                <div class="tab-inner"><i class="fa-solid fa-rocket"></i><div class="tab-text">LANDINGS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">03</div>
+                <div class="tab-inner"><i class="fa-solid fa-cart-shopping"></i><div class="tab-text">TIENDAS</div></div>
+            </div>
+            <div class="folder-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">04</div>
+                <div class="tab-inner"><i class="fa-solid fa-robot"></i><div class="tab-text">CHATBOTS IA</div></div>
+            </div>
+            <div class="folder-tab active-tab">
+                <svg class="folder-svg" viewBox="0 0 72 76" preserveAspectRatio="none"><path d="M0,12 Q0,2 10,2 L24,2 Q28,2 30,6 L34,12 Q36,15 40,15 L62,15 Q72,15 72,25 L72,68 Q72,76 62,76 L10,76 Q0,76 0,68 Z"/></svg>
+                <div class="tab-num">05</div>
+                <div class="tab-inner"><i class="fa-solid fa-wand-magic-sparkles"></i><div class="tab-text">REDISEÑO</div></div>
+            </div>
+        </div>
+        <div class="indicator-line"><div class="indicator-dot" style="left: 90%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-paper-plane"></i></div>
+        <h2 class="header-title">¡HABLEMOS! <span>CONTACTO</span></h2>
+        <p class="body-text">Escribinos al DM de Instagram o visitá nuestra página web.</p>
+        
+        <div class="contact-stack">
+            <div class="contact-item">
+                <div class="contact-item-icon instagram"><i class="fa-brands fa-instagram"></i></div>
+                <div class="contact-item-content">
+                    <span class="contact-item-label">Instagram</span>
+                    <span class="contact-item-value">Escribinos al DM</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-item-icon web"><i class="fa-solid fa-globe"></i></div>
+                <div class="contact-item-content">
+                    <span class="contact-item-label">Página Web</span>
+                    <span class="contact-item-value">nexodigital.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="indicator-line"><div class="indicator-dot" style="left: 50%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+<div class="story-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment"></div>
+        </div>
+        <div class="neon-graphic"><i class="fa-solid fa-circle-question"></i></div>
+        <h2 class="header-title">¿PARA QUÉ NECESITO<br><span>UN CHATBOT?</span></h2>
+        <p class="body-text" style="max-width: 380px;">Para responder dudas de tus clientes, calificar leads y automatizar ventas las 24 horas sin que tengas que estar pendiente del celular.</p>
+        
+        <div class="chatbot-hint-box">
+            <div class="hint-icon-wrap">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="hint-text">
+                En la siguiente historia podrás ver cómo funciona nuestro chatbot en acción.
+            </div>
+        </div>
+        
+        <div class="indicator-line"><div class="indicator-dot" style="left: 25%;"></div></div>
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+<div class="story-card chatbot-card">
+    <div class="content-wrap">
+        <div class="instagram-progress">
+            <div class="segment filled"></div><div class="segment filled"></div>
+        </div>
+        
+        <!-- Chatbot Header -->
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <div class="chatbot-avatar">N</div>
+                <div class="chatbot-header-text">
+                    <span class="chatbot-name">Nexo Bot</span>
+                    <span class="chatbot-status">Online</span>
+                </div>
+            </div>
+            <div class="chatbot-close-btn">✕</div>
+        </div>
+        
+        <!-- Chatbot Messages -->
+        <div class="chatbot-body">
+            <div class="chat-bubble bot">
+                ¡Hola! Soy Nexo Bot, el asistente virtual de Nexo Digital. Estoy acá para responder todas tus dudas. ¿Qué te gustaría saber?
+            </div>
+            
+            <div class="chat-bubble user">
+                ¿Cómo obtengo mi chatbot?
+            </div>
+            
+            <div class="chat-bubble bot-large">
+                <div class="chat-bubble-intro">
+                    ¡Es muy simple! Obtener tu chatbot personalizado tiene solo 3 pasos:
+                </div>
+                
+                <div class="chat-step">
+                    <div class="chat-step-header">
+                        <span class="chat-step-num">1</span>
+                        <span>Contanos qué necesitás</span>
+                    </div>
+                    <div class="chat-step-body">
+                        Nos escribís por WhatsApp o completás el formulario. Nos contás sobre tu negocio y qué preguntas te hacen tus clientes.
+                    </div>
+                </div>
+                
+                <div class="chat-step">
+                    <div class="chat-step-header">
+                        <span class="chat-step-num">2</span>
+                        <span>Lo diseñamos para vos</span>
+                    </div>
+                    <div class="chat-step-body">
+                        Creamos un bot personalizado con las respuestas de tu negocio, tus colores y tu estilo. Te mostramos una demo para que lo apruebes.
+                    </div>
+                </div>
+                
+                <div class="chat-step">
+                    <div class="chat-step-header">
+                        <span class="chat-step-num">3</span>
+                        <span>Lo instalamos y listo</span>
+                    </div>
+                    <div class="chat-step-body">
+                        Lo integramos en tu web, WhatsApp o Instagram. Te explicamos cómo funciona y te damos soporte.
+                    </div>
+                </div>
+                
+                <div class="chat-bullets">
+                    <div class="chat-bullet">Tiempo de entrega: 3 a 7 días</div>
+                    <div class="chat-bullet">Desde: $100 USD</div>
+                    <div class="chat-bullet">Incluye: Configuración + personalización + capacitación</div>
+                </div>
+                
+                <div class="chat-cta">
+                    ¿Querés arrancar? ¡Escribinos!
+                </div>
+            </div>
+        </div>
+        
+        <!-- Input Bar -->
+        <div class="chatbot-input-bar">
+            <div class="chatbot-input-field">Escribí tu mensaje...</div>
+            <div class="chatbot-send-btn">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+        </div>
+        
+        <div class="indicator-line"><div class="indicator-dot" style="left: 75%;"></div></div>
+        <!-- Footer -->
+        <div class="brand-footer"><div class="square-logo">N</div><div class="footer-text">NEXO DIGITAL</div></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo Digital | Diseño & Desarrollo Web Profesional | Páginas Web y Chatbots con IA</title>
+    <meta name="description" content="Nexo Digital es una agencia de diseño y desarrollo web profesional en Argentina. Creamos páginas web a medida, landing pages de alta conversión, tiendas online y chatbots con inteligencia artificial. ¡Obtén tu presupuesto gratis!">
+    <meta name="keywords" content="diseño web argentina, páginas web profesionales, diseño de sitios web, creador de páginas web, diseño web a medida, desarrollo web a medida, chatbots con IA, chatbots para whatsapp, tiendas online argentina, e-commerce, nexo digital">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexo-web.com.ar/">
+    <meta property="og:title" content="Nexo Digital | Diseño & Desarrollo Web Profesional">
+    <meta property="og:description" content="Diseño y desarrollo de páginas web a medida, tiendas online y chatbots con inteligencia artificial. Potenciamos tu presencia digital.">
+    <meta property="og:image" content="https://nexo-web.com.ar/assets/cover_trabajos.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nexo-web.com.ar/">
+    <meta property="twitter:title" content="Nexo Digital | Diseño & Desarrollo Web Profesional">
+    <meta property="twitter:description" content="Diseño y desarrollo de páginas web a medida, tiendas online y chatbots con inteligencia artificial. Potenciamos tu presencia digital.">
+    <meta property="twitter:image" content="https://nexo-web.com.ar/assets/cover_trabajos.png">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Nexo Digital",
+      "image": "https://nexo-web.com.ar/assets/logo_ig.png",
+      "url": "https://nexo-web.com.ar/",
+      "telephone": "",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AR"
+      },
+      "sameAs": [
+        "https://www.instagram.com/nexodigital.ok"
+      ],
+      "description": "Agencia de diseño y desarrollo web profesional. Creamos sitios web, landing pages, tiendas online y chatbots con inteligencia artificial para potenciar tu negocio."
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatbot.css" media="print" onload="this.media='all'">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <!-- Canvas para el fondo 3D de Three.js -->
+    <canvas id="bg3d"></canvas>
+
+    <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">
+                    <img src="assets/logo_ig.png" alt="Nexo Digital Logo" class="logo-img" width="38" height="38">
+                </span>
+                <span class="logo-text">NEXO <span class="logo-accent">DIGITAL</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#contacto" class="nav-cta">Iniciar Proyecto</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section id="inicio" class="hero">
+        <div class="hero-bg">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+        </div>
+        <div class="hero-grid-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge reveal">
+                <span class="badge-dot"></span>
+                Agencia de Diseño & Desarrollo Web
+            </div>
+            <h1 class="hero-title reveal">
+                Creamos experiencias <br><span class="tw-line">digitales que <span class="tw-word" id="tw-word"></span><span class="tw-cursor">|</span></span>
+            </h1>
+            <p class="hero-subtitle reveal">
+                Conectamos marcas con resultados. Diseñamos y desarrollamos sitios web profesionales, 
+                landing pages y tiendas online que convierten visitantes en clientes.
+            </p>
+            <div class="hero-buttons reveal">
+                <a href="#portfolio" class="btn btn-primary">
+                    Ver Proyectos
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#contacto" class="btn btn-ghost">Solicitar Presupuesto</a>
+            </div>
+            <div class="hero-stats reveal">
+                <div class="hero-stat">
+                    <span class="stat-number" data-target="50">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Proyectos Entregados</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-target="30">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Clientes Satisfechos</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-label">Años de Experiencia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ SERVICES ═══════════════════ -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Servicios</span>
+                <h2 class="section-title">Soluciones digitales <span class="gradient-text">a tu medida</span></h2>
+                <p class="section-desc">Cada proyecto es único. Ofrecemos servicios especializados para potenciar tu presencia digital.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Sitios Web a Medida</h3>
+                    <p class="service-desc">Diseñamos y desarrollamos sitios web únicos que reflejan la identidad de tu marca y cautivan a tus visitantes.</p>
+                    <ul class="service-features">
+                        <li>Diseño 100% responsive</li>
+                        <li>Optimización SEO</li>
+                        <li>Carga ultrarrápida</li>
+                    </ul>
+                    <div class="service-card-glow"></div>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L12 8M12 2L8 6M12 2L16 6"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 15l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Landing Pages</h3>
+                    <p class="service-desc">Páginas de aterrizaje optimizadas para convertir visitantes en clientes. Diseñadas con estrategia y enfocadas en resultados.</p>
+                    <ul class="service-features">
+                        <li>Alta conversión</li>
+                        <li>Diseño persuasivo</li>
+                        <li>Integración con CRM</li>
+                    </ul>
+                    <div class="service-card-glow"></div>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Tiendas Online</h3>
+                    <p class="service-desc">Soluciones e-commerce completas para vender tus productos online. Experiencia de compra intuitiva y segura.</p>
+                    <ul class="service-features">
+                        <li>Carrito de compras</li>
+                        <li>Pasarela de pagos</li>
+                        <li>Panel de administración</li>
+                    </ul>
+                    <div class="service-card-glow"></div>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Rediseño Web</h3>
+                    <p class="service-desc">Transformamos sitios web obsoletos en experiencias modernas y efectivas. Dale nueva vida a tu presencia digital.</p>
+                    <ul class="service-features">
+                        <li>Análisis UX/UI</li>
+                        <li>Migración segura</li>
+                        <li>Mejora de rendimiento</li>
+                    </ul>
+                    <div class="service-card-glow"></div>
+                </div>
+                <!-- Service 5: Chatbots -->
+                <div class="service-card service-card-featured reveal">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/>
+                        </svg>
+                    </div>
+                    <div class="service-badge-new">NUEVO</div>
+                    <h3 class="service-title">Chatbots & Automatización</h3>
+                    <p class="service-desc">Bots de respuesta automática para tu web, WhatsApp, Instagram y Telegram. Atención 24/7 sin contratar personal.</p>
+                    <ul class="service-features">
+                        <li>WhatsApp & Instagram</li>
+                        <li>Inteligencia Artificial</li>
+                        <li>Atención 24/7</li>
+                    </ul>
+                    <div class="service-card-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ PORTFOLIO ═══════════════════ -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Proyectos que <span class="gradient-text">hablan por sí solos</span></h2>
+                <p class="section-desc">Una selección de nuestros trabajos más recientes. Cada proyecto refleja nuestro compromiso con la excelencia.</p>
+            </div>
+            <div class="portfolio-grid single-project">
+                <!-- Project 1 (Real Case Study) -->
+                <div class="portfolio-card reveal featured-project">
+                    <div class="portfolio-image">
+                        <img src="assets/proyecto-antar.png" alt="Sitio web de ANTAR Amoblamientos" loading="lazy" width="1024" height="521">
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-tag">Proyecto Destacado</span>
+                            <h3>ANTAR Amoblamientos</h3>
+                            <p>Mueblería de Diseño a Medida — SPA premium nórdico-industrial con cotizador automatizado conectado directamente a WhatsApp.</p>
+                            <a href="https://antarmuebles.netlify.app/" target="_blank" class="portfolio-btn">Ver Web en Vivo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ DISEÑO ADAPTATIVO ═══════════════════ -->
+    <section id="adaptabilidad" class="adaptive-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Diseño Adaptativo</span>
+                <h2 class="section-title">Tu sitio web impecable en <span class="gradient-text">cualquier pantalla</span></h2>
+                <p class="section-desc">El 80% de tus clientes te buscarán desde el celular. Diseñamos con un enfoque fluido e interactivo que garantiza la mejor experiencia de usuario en computadoras, tablets y smartphones.</p>
+            </div>
+            <div class="adaptive-grid">
+                <div class="adaptive-content reveal">
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                        </div>
+                        <div>
+                            <h3>Optimización Móvil Primero</h3>
+                            <p>Estructuramos la información pensando en el pulgar y la navegación rápida del usuario móvil. Cero textos minúsculos o botones difíciles de tocar.</p>
+                        </div>
+                    </div>
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+                        </div>
+                        <div>
+                            <h3>Velocidad de Carga Extrema</h3>
+                            <p>Las páginas lentas pierden ventas. Minimizamos el código y optimizamos las imágenes para que tu sitio cargue en menos de 2 segundos.</p>
+                        </div>
+                    </div>
+                    <div class="adaptive-item">
+                        <div class="adaptive-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div>
+                            <h3>Adaptabilidad Fluida (Liquid Layouts)</h3>
+                            <p>Nuestras webs no solo se achican; se reorganizan de forma inteligente adaptando tipografías y contenedores para aprovechar cada pixel de la pantalla.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="adaptive-visual reveal">
+                    <div class="visual-mockup-wrapper">
+                        <div class="mockup-laptop">
+                            <div class="screen-laptop">
+                                <div class="laptop-website-mockup"></div>
+                            </div>
+                        </div>
+                        <div class="mockup-phone">
+                            <div class="screen-phone">
+                                <div class="phone-website-mockup"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ PROCESS ═══════════════════ -->
+    <section id="proceso" class="process">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Proceso</span>
+                <h2 class="section-title">Cómo <span class="gradient-text">trabajamos</span></h2>
+                <p class="section-desc">Un proceso claro y transparente para que sepas exactamente qué esperar en cada etapa.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step reveal">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Consulta Inicial</h3>
+                        <p>Nos reunimos para entender tu negocio, objetivos y necesidades. Definimos juntos la estrategia y el alcance del proyecto.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Diseño & Prototipo</h3>
+                        <p>Creamos prototipos visuales del diseño. Iteramos contigo hasta que el resultado refleje tu visión perfectamente.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Desarrollo</h3>
+                        <p>Transformamos el diseño aprobado en código funcional. Construimos tu sitio con las mejores tecnologías del mercado.</p>
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="process-step reveal">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Entrega & Lanzamiento</h3>
+                        <p>Lanzamos tu sitio al mundo. Te entregamos todo el material y te brindamos soporte en la puesta en marcha.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+    <section id="testimonios" class="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Testimonios</span>
+                <h2 class="section-title">Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Superaron todas nuestras expectativas. El sitio web que nos diseñaron aumentó nuestras reservas online un 200%. Totalmente recomendados."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <strong>Martín Rodríguez</strong>
+                            <span>Dueño — Sabores del Sur</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Profesionales de principio a fin. Entendieron mi visión y la llevaron a otro nivel. Mi tienda online factura el triple desde que trabajamos juntos."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CM</div>
+                        <div class="author-info">
+                            <strong>Carolina Méndez</strong>
+                            <span>Fundadora — Luna Store</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"El rediseño de nuestro sitio fue un antes y un después para nuestra empresa. El proceso fue impecable y el resultado extraordinario."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FT</div>
+                        <div class="author-info">
+                            <strong>Federico Torres</strong>
+                            <span>CEO — TechVida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ PRICING ═══════════════════ -->
+    <section id="precios" class="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Precios</span>
+                <h2 class="section-title">Inversión <span class="gradient-text">transparente</span></h2>
+                <p class="section-desc">Sin sorpresas ni costos ocultos. Estos son nuestros precios base — el precio final depende de tu proyecto.</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    </div>
+                    <h3>Sitio Web a Medida</h3>
+                    <p class="pricing-desc">Diseño profesional, responsive y optimizado para tu negocio.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$150</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Diseño 100% responsive</li>
+                        <li>SEO optimizado</li>
+                        <li>Formulario de contacto</li>
+                        <li>Entrega en menos de 3 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-ghost btn-full">Solicitar</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L12 8M12 2L8 6M12 2L16 6"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 15l2 2 4-4"/></svg>
+                    </div>
+                    <h3>Landing Page</h3>
+                    <p class="pricing-desc">Página de aterrizaje diseñada para convertir visitantes en clientes.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$60</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Diseño persuasivo</li>
+                        <li>Alta conversión</li>
+                        <li>Formulario de captura</li>
+                        <li>Entrega en menos de 3 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-ghost btn-full">Solicitar</a>
+                </div>
+                <div class="pricing-card pricing-card-featured reveal">
+                    <div class="pricing-badge">POPULAR</div>
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    </div>
+                    <h3>Tienda Online</h3>
+                    <p class="pricing-desc">E-commerce completo para vender tus productos las 24 horas.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$250</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Catálogo de productos</li>
+                        <li>Carrito y pasarela de pagos</li>
+                        <li>Panel de administración</li>
+                        <li>Entrega en menos de 5 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-primary btn-full">Solicitar</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+                    </div>
+                    <h3>Rediseño Web</h3>
+                    <p class="pricing-desc">Transformamos tu sitio obsoleto en una experiencia moderna.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$120</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Análisis UX/UI</li>
+                        <li>Diseño moderno</li>
+                        <li>Migración de contenido</li>
+                        <li>Entrega en menos de 3 días</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-ghost btn-full">Solicitar</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+                    </div>
+                    <h3>Chatbot</h3>
+                    <p class="pricing-desc">Bot de respuesta automática para tu web, WhatsApp o Instagram.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$100</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Respuestas automáticas</li>
+                        <li>Botones interactivos</li>
+                        <li>Personalización visual</li>
+                        <li>Atención 24/7</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-ghost btn-full">Solicitar</a>
+                </div>
+                <div class="pricing-card reveal">
+                    <div class="pricing-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/><path d="M8 2h8"/><path d="M12 2v2"/></svg>
+                    </div>
+                    <h3>Identidad de Marca</h3>
+                    <p class="pricing-desc">Logo profesional, slogan, paleta de colores y tipografías para tu negocio.</p>
+                    <div class="pricing-price">
+                        <span class="price-from">Desde</span>
+                        <span class="price-amount">$50</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <ul class="pricing-includes">
+                        <li>Diseño de logo</li>
+                        <li>Slogan / tagline</li>
+                        <li>Paleta de colores</li>
+                        <li>Tipografías seleccionadas</li>
+                    </ul>
+                    <a href="#contacto" class="btn btn-ghost btn-full">Solicitar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CTA ═══════════════════ -->
+    <section class="cta-section">
+        <div class="cta-bg">
+            <div class="cta-orb cta-orb-1"></div>
+            <div class="cta-orb cta-orb-2"></div>
+        </div>
+        <div class="container cta-content reveal">
+            <h2>¿Listo para transformar tu <span class="gradient-text">presencia digital</span>?</h2>
+            <p>Conversemos sobre tu proyecto. La consulta inicial es sin costo y sin compromiso.</p>
+            <div class="cta-buttons">
+                <a href="#contacto" class="btn btn-primary btn-lg">
+                    Solicitar Presupuesto Gratis
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FAQ ═══════════════════ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">FAQ</span>
+                <h2 class="section-title">Preguntas <span class="gradient-text">frecuentes</span></h2>
+                <p class="section-desc">Todo lo que necesitás saber antes de empezar.</p>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cuánto tarda en estar listo mi sitio web?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>En menos de <strong>3 días hábiles</strong> tu sitio está listo. Para tiendas online más complejas, puede extenderse hasta 5 días. Te mantenemos informado en cada paso del proceso.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué pasa si no me gusta el resultado?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Te damos una <strong>vista previa completa</strong> antes de la entrega final. Si algo no te convence, podés pedir los cambios que necesites hasta que quedes 100% conforme. Tu satisfacción es nuestra prioridad.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué necesito para empezar?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Solo tenés que <strong>contactarnos y darnos tu idea</strong>. Nosotros nos encargamos de todo lo demás: diseño, desarrollo, contenido y puesta en marcha. Si ya tenés logo, fotos o textos, mejor — pero no es obligatorio.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Los precios incluyen hosting y dominio?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El precio incluye el <strong>diseño y desarrollo completo</strong> de tu sitio. El hosting puede ser gratuito (Netlify, Vercel) o pago según tus necesidades. Te asesoramos para que elijas la mejor opción.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Ofrecen soporte después de la entrega?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí. Todos nuestros proyectos incluyen <strong>soporte post-entrega</strong> para resolver cualquier duda o ajuste menor. Estamos acá para ayudarte siempre que lo necesites.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ CONTACT ═══════════════════ -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Contacto</span>
+                <h2 class="section-title">Empecemos a <span class="gradient-text">trabajar juntos</span></h2>
+                <p class="section-desc">Completá el formulario o escribinos por WhatsApp. Te respondemos en menos de 24 horas.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>Respuesta inmediata</p>
+                            <a href="https://wa.me/5493795051607" class="contact-link whatsapp-link" target="_blank">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                Escribinos
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+                        </div>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p>Seguinos y escribinos por DM</p>
+                            <a href="https://www.instagram.com/nexodigital_arg/" class="contact-link instagram-link" target="_blank">
+                                @nexodigital_arg
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>Para consultas detalladas</p>
+                            <a href="mailto:nexodigital.mmr@gmail.com" class="contact-link">nexodigital.mmr@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Corrientes, Argentina</p>
+                            <span class="contact-link">Trabajo remoto — Todo el país</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form reveal nw-form-wrap" id="nwIntakeForm" onsubmit="event.preventDefault();">
+                    <!-- Form Header Progress -->
+                    <div class="nw-form-header">
+                        <span id="nwStepLabel" class="nw-step-label">Paso 1 de 5</span>
+                        <h3 id="nwStepName" class="nw-step-name">Tu negocio</h3>
+                        <div class="nw-progress-bar">
+                            <div id="nwProgressFill" class="nw-progress-fill" style="width: 20%;"></div>
+                        </div>
+                        <div id="nwStepDots" class="nw-step-dots"></div>
+                    </div>
+
+                    <!-- Paso 1: Tu negocio -->
+                    <div class="nw-step active" data-step="1">
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_empresa">Nombre de tu empresa o marca</label>
+                            <input type="text" id="nw_empresa" name="nw_empresa" placeholder="Ej. ANTAR Amoblamientos" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_rubro">¿A qué rubro se dedica?</label>
+                            <input type="text" id="nw_rubro" name="nw_rubro" placeholder="Ej. Mueblería, Estética, Gastronomía" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_descripcion">Describí brevemente tu negocio</label>
+                            <textarea id="nw_descripcion" name="nw_descripcion" rows="3" placeholder="¿Qué vendés o qué servicio ofrecés?" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Contacto y redes -->
+                    <div class="nw-step" data-step="2">
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_nombre_contacto">Nombre del responsable</label>
+                            <input type="text" id="nw_nombre_contacto" name="nw_nombre_contacto" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group nw-field" data-required>
+                            <label for="nw_whatsapp">Número de WhatsApp</label>
+                            <input type="tel" id="nw_whatsapp" name="nw_whatsapp" placeholder="Ej. 3794123456" required>
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_instagram">Perfil de Instagram</label>
+                            <input type="text" id="nw_instagram" name="nw_instagram" placeholder="Ej. @tu.negocio">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_facebook">Página de Facebook (opcional)</label>
+                            <input type="text" id="nw_facebook" name="nw_facebook" placeholder="Link o nombre de página">
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Material visual -->
+                    <div class="nw-step" data-step="3">
+                        <div class="form-group nw-field">
+                            <label>¿Tenés logotipo actual?</label>
+                            <div class="nw-toggle-group">
+                                <button type="button" class="nw-toggle-btn" data-toggle="nw_tiene_logo" data-value="si" onclick="nwToggleSelect(this)">Sí, tengo</button>
+                                <button type="button" class="nw-toggle-btn selected" data-toggle="nw_tiene_logo" data-value="no" onclick="nwToggleSelect(this)">No, necesito uno</button>
+                            </div>
+                            <input type="hidden" name="nw_tiene_logo" value="no">
+                        </div>
+                        <div class="form-group nw-field" id="nw_cond_logo" style="display: none;">
+                            <label for="nw_logo_file">Subí tu logotipo</label>
+                            <input type="file" id="nw_logo_file" name="nw_logo_file" accept="image/*">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_links_fotos">Enlace a fotos de tus trabajos (Drive, Dropbox, etc.)</label>
+                            <textarea id="nw_links_fotos" name="nw_links_fotos" rows="3" placeholder="Pegá acá el link con las fotos de tus trabajos o productos para que las sumemos a la web..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Diseño y funciones -->
+                    <div class="nw-step" data-step="4">
+                        <div class="form-group nw-field">
+                            <label>¿Tenés colores de marca definidos?</label>
+                            <div class="nw-toggle-group">
+                                <button type="button" class="nw-toggle-btn" data-toggle="nw_tiene_colores" data-value="si" onclick="nwToggleSelect(this)">Sí</button>
+                                <button type="button" class="nw-toggle-btn selected" data-toggle="nw_tiene_colores" data-value="no" onclick="nwToggleSelect(this)">No, prefiero que propongan</button>
+                            </div>
+                            <input type="hidden" name="nw_tiene_colores" value="no">
+                        </div>
+                        <div class="form-group nw-field" id="nw_cond_colores" style="display: none;">
+                            <label for="nw_color_primario">¿Qué colores te gustaría usar?</label>
+                            <input type="text" id="nw_color_primario" name="nw_color_primario" placeholder="Ej. Azul y blanco, negro y dorado...">
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_webs_referencia">Páginas web que te gusten de referencia</label>
+                            <input type="text" id="nw_webs_referencia" name="nw_webs_referencia" placeholder="Ej. www.ejemplo.com">
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Información final -->
+                    <div class="nw-step" data-step="5">
+                        <div class="form-group nw-field">
+                            <label for="nw_adicional">Comentarios adicionales o pedidos especiales</label>
+                            <textarea id="nw_adicional" name="nw_adicional" rows="4" placeholder="Contanos cualquier detalle extra que creas importante..."></textarea>
+                        </div>
+                        <div class="form-group nw-field">
+                            <label for="nw_como_conociste">¿Cómo nos conociste?</label>
+                            <select id="nw_como_conociste" name="nw_como_conociste">
+                                <option value="">Seleccionar opción</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="google">Google</option>
+                                <option value="recomendado">Recomendación</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Form Navigation Buttons -->
+                    <div class="nw-form-nav">
+                        <button type="button" id="nwBtnPrev" class="btn btn-ghost" onclick="nwChangeStep(-1)" style="display: none;">Atrás</button>
+                        <button type="button" id="nwBtnNext" class="btn btn-primary" onclick="nwChangeStep(1)">Siguiente</button>
+                        
+                        <div id="nwFinalOptions" style="display: none; width: 100%;">
+                            <button type="button" id="nwBtnDemo" class="btn btn-primary btn-full" onclick="nwSubmitForm()">
+                                Enviar Cotización por WhatsApp
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">
+                            <img src="assets/logo_ig.png" alt="Nexo Digital Logo" class="logo-img" width="38" height="38">
+                        </span>
+                        <span class="logo-text">NEXO <span class="logo-accent">DIGITAL</span></span>
+                    </a>
+                    <p>Conectamos marcas con resultados. Diseño y desarrollo web profesional en Argentina.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="#servicios">Sitios Web</a></li>
+                        <li><a href="#servicios">Landing Pages</a></li>
+                        <li><a href="#servicios">E-Commerce</a></li>
+                        <li><a href="#servicios">Rediseño Web</a></li>
+                        <li><a href="#servicios">Chatbots</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nexo Digital. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════ CHATBOT WIDGET ═══════════════════ -->
+    <div id="chatbot-widget">
+        <div id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-header-info">
+                    <div class="chatbot-avatar">N</div>
+                    <div>
+                        <strong>Nexo Bot</strong>
+                        <span class="chatbot-status">Online</span>
+                    </div>
+                </div>
+                <button id="chatbot-close" aria-label="Cerrar chat">✕</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatbot-input" placeholder="Escribí tu mensaje...">
+                <button id="chatbot-send" aria-label="Enviar mensaje">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+            </div>
+        </div>
+        <button id="chatbot-toggle" aria-label="Abrir chat">
+            <svg class="chat-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            <span id="chatbot-badge">1</span>
+        </button>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5493795051607" class="whatsapp-float" target="_blank" aria-label="Contacto por WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 11.95.01c3.178 0 6.161 1.238 8.4 3.48 2.239 2.24 3.479 5.223 3.479 8.402 0 6.549-5.337 11.887-11.892 11.887-2.007 0-3.974-.509-5.729-1.48L0 24zm6.59-4.846c1.666.988 3.309 1.488 5.305 1.49h.005c5.449 0 9.882-4.43 9.886-9.878 0-2.639-1.028-5.122-2.894-6.99A9.8 9.8 0 0 0 11.95 1.83C6.5 1.83 2.067 6.26 2.064 11.71c0 2.062.54 3.74 1.547 5.311L2.64 21.05l4.007-.996zM17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+        </svg>
+        <span class="whatsapp-float-pulse"></span>
+    </a>
+
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="chatbot.js" defer></script>
+</body>
+</html>
