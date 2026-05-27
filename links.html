@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo Digital | Enlaces de Contacto</title>
+    <meta name="description" content="Nexo Digital — Enlaces rápidos para contactarnos, ver nuestro Instagram, chatear por WhatsApp y visitar nuestro sitio web oficial.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #06060e;
+            --bg-secondary: #0a0a1a;
+            --bg-card: rgba(15, 15, 35, 0.7);
+            --bg-card-hover: rgba(20, 20, 46, 0.85);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(99, 102, 241, 0.25);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-1: #6366f1; /* Indigo */
+            --accent-2: #8b5cf6; /* Violet */
+            --accent-3: #06b6d4; /* Cyan */
+            --gradient-main: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --gradient-instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --gradient-whatsapp: linear-gradient(135deg, #25d366, #128c7e);
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 3D-Like Background Orbs */
+        .background-decor {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: float 12s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -50px;
+            background: radial-gradient(circle, var(--accent-1), transparent 70%);
+        }
+
+        .orb-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            left: -50px;
+            background: radial-gradient(circle, var(--accent-2), transparent 70%);
+            animation-delay: -3s;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, var(--accent-3), transparent 70%);
+            opacity: 0.12;
+            animation-delay: -6s;
+        }
+
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle, rgba(0,0,0,0.8), rgba(0,0,0,0));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-15px) scale(1.05); }
+        }
+
+        /* Container */
+        .links-container {
+            width: 100%;
+            max-width: 460px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+        }
+
+        /* Brand Header */
+        .brand-header {
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .logo-icon {
+            width: 86px;
+            height: 86px;
+            border-radius: 22px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid var(--border-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.15);
+            transition: var(--transition);
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .logo-glow {
+            position: absolute;
+            inset: -4px;
+            border-radius: 26px;
+            background: var(--gradient-main);
+            z-index: -1;
+            opacity: 0.4;
+            filter: blur(12px);
+            transition: var(--transition);
+        }
+
+        .logo-wrapper:hover .logo-glow {
+            opacity: 0.8;
+            filter: blur(16px);
+        }
+
+        .brand-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #f1f5f9 60%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .brand-title span {
+            color: var(--accent-1);
+        }
+
+        .brand-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        /* Link List */
+        .link-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .link-item {
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.15s; }
+        .link-item:nth-child(2) { animation-delay: 0.25s; }
+        .link-item:nth-child(3) { animation-delay: 0.35s; }
+        .link-item:nth-child(4) { animation-delay: 0.45s; }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.98rem;
+            text-align: left;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
+            z-index: 1;
+        }
+
+        .link-btn-glow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-main);
+            transition: var(--transition);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 1.15rem;
+            color: var(--accent-1);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .btn-text-content {
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .btn-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .btn-desc {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .btn-arrow {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-left: auto;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        /* Hover States */
+        .link-btn:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
+        }
+
+        .link-btn:hover .btn-icon {
+            background: rgba(99, 102, 241, 0.12);
+            border-color: var(--border-accent);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .link-btn:hover .btn-arrow {
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+
+        /* Specialized Buttons */
+        .whatsapp-btn .link-btn-glow {
+            background: var(--gradient-whatsapp);
+        }
+        .whatsapp-btn:hover {
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.15);
+            border-color: rgba(37, 211, 102, 0.3);
+        }
+        .whatsapp-btn .btn-icon {
+            color: #25d366;
+        }
+        .whatsapp-btn:hover .btn-icon {
+            background: rgba(37, 211, 102, 0.12);
+            border-color: rgba(37, 211, 102, 0.3);
+            color: #25d366;
+        }
+
+        .instagram-btn .link-btn-glow {
+            background: var(--gradient-instagram);
+        }
+        .instagram-btn:hover {
+            box-shadow: 0 8px 24px rgba(225, 48, 108, 0.15);
+            border-color: rgba(225, 48, 108, 0.3);
+        }
+        .instagram-btn .btn-icon {
+            color: #e1306c;
+        }
+        .instagram-btn:hover .btn-icon {
+            background: rgba(225, 48, 108, 0.12);
+            border-color: rgba(225, 48, 108, 0.3);
+            color: #e1306c;
+        }
+
+        /* WhatsApp Pulsing Badge */
+        .pulse-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 8px;
+            height: 8px;
+            background-color: #25d366;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Footer */
+        .links-footer {
+            margin-top: 12px;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: var(--border-accent);
+            transform: translateY(-2px);
+            background: var(--bg-card-hover);
+        }
+
+        .social-link.wa:hover { color: #25d366; box-shadow: 0 6px 16px rgba(37, 211, 102, 0.2); }
+        .social-link.ig:hover { color: #e1306c; box-shadow: 0 6px 16px rgba(225, 48, 108, 0.2); }
+        .social-link.web:hover { color: var(--accent-3); box-shadow: 0 6px 16px rgba(6, 182, 212, 0.2); }
+
+        .copyright {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-decor">
+        <div class="grid-lines"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="links-container">
+        <!-- Brand Header -->
+        <header class="brand-header">
+            <div class="logo-wrapper">
+                <div class="logo-glow"></div>
+                <div class="logo-icon">
+                    <img src="assets/logo_ig.png" alt="Nexo Digital Logo" width="86" height="86">
+                </div>
+            </div>
+            <h1 class="brand-title">Nexo<span>Digital</span></h1>
+            <p class="brand-subtitle">Experiencias web profesionales y automatizaciones inteligentes para potenciar tu marca.</p>
+        </header>
+
+        <!-- Link Buttons -->
+        <main class="link-list">
+            <!-- Sitio Web -->
+            <div class="link-item">
+                <a href="https://nexo-web.com.ar" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <span class="link-btn-glow"></span>
+                    <span class="btn-icon"><i class="fa-solid fa-globe"></i></span>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Sitio Web Oficial</span>
+                        <span class="btn-desc">Ver nuestro portafolio, servicios y precios</span>
+                    </div>
+                    <span class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+            </div>
+
+            <!-- WhatsApp Direct -->
+            <div class="link-item">
+                <a href="https://wa.me/5493795051607?text=Hola!%20Vengo%20desde%20sus%20enlaces%20y%20me%20gustar%C3%ADa%20consultar%20por%20sus%20servicios%20de%20dise%C3%B1o%20web/chatbots." class="link-btn whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                    <span class="link-btn-glow"></span>
+                    <span class="btn-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span class="pulse-dot"></span>
+                    </span>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Escribinos por WhatsApp</span>
+                        <span class="btn-desc">Chateá directo con un asesor en tiempo real</span>
+                    </div>
+                    <span class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+            </div>
+
+            <!-- Instagram -->
+            <div class="link-item">
+                <a href="https://www.instagram.com/nexodigital_arg/" class="link-btn instagram-btn" target="_blank" rel="noopener noreferrer">
+                    <span class="link-btn-glow"></span>
+                    <span class="btn-icon"><i class="fa-brands fa-instagram"></i></span>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Síguenos en Instagram</span>
+                        <span class="btn-desc">@nexodigital_arg — Consejos, tips y novedades</span>
+                    </div>
+                    <span class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+            </div>
+
+            <!-- Cotizar Proyecto Formulario -->
+            <div class="link-item">
+                <a href="https://nexo-web.com.ar#contacto" class="link-btn" target="_blank" rel="noopener noreferrer">
+                    <span class="link-btn-glow" style="background: linear-gradient(135deg, var(--accent-1), var(--accent-3))"></span>
+                    <span class="btn-icon" style="color: var(--accent-3)"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                    <div class="btn-text-content">
+                        <span class="btn-title">Cotizar tu Sitio Web</span>
+                        <span class="btn-desc">Completá el formulario en 1 minuto y recibí un presupuesto</span>
+                    </div>
+                    <span class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="links-footer">
+            <div class="social-row">
+                <a href="https://wa.me/5493795051607" class="social-link wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/nexodigital_arg/" class="social-link ig" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://nexo-web.com.ar" class="social-link web" target="_blank" rel="noopener noreferrer" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+            </div>
+            <p class="copyright">© 2026 Nexo Digital. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
