@@ -558,7 +558,24 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
     .pricing-grid { grid-template-columns:repeat(2,1fr); }
 }
 @media (max-width:768px) {
-    .pricing-grid { grid-template-columns:1fr; max-width:400px; margin:0 auto; }
+    .pricing-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 16px !important;
+        padding: 10px 24px 24px !important;
+        margin-left: -24px !important;
+        margin-right: -24px !important;
+        scrollbar-width: none;
+    }
+    .pricing-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .pricing-card {
+        flex: 0 0 280px !important;
+        scroll-snap-align: center !important;
+        margin: 0 !important;
+    }
 }
 
 /* ── 3D Background Canvas ── */
@@ -935,8 +952,29 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
     .nav-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
     .nav-toggle.active span:nth-child(2) { opacity:0; }
     .nav-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .services-grid { grid-template-columns:1fr; }
-    .services-grid .service-card:nth-child(5) { max-width: 100%; }
+    .services-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 16px !important;
+        padding: 10px 24px 24px !important;
+        margin-left: -24px !important;
+        margin-right: -24px !important;
+        scrollbar-width: none;
+    }
+    .services-grid::-webkit-scrollbar {
+        display: none;
+    }
+    .service-card {
+        flex: 0 0 280px !important;
+        scroll-snap-align: center !important;
+        margin: 0 !important;
+    }
+    .services-grid .service-card:nth-child(5) {
+        grid-column: auto !important;
+        max-width: 280px !important;
+        justify-self: auto !important;
+    }
     .portfolio-grid { grid-template-columns:1fr; }
     .testimonials-grid { grid-template-columns:1fr; }
     .hero-stats { flex-direction:column; gap:20px; padding:24px; }
