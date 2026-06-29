@@ -173,6 +173,9 @@ REGLAS DE COMPORTAMIENTO:
                 
                 heroInput.value = '';
                 
+                // Skip initial greeting since the user is starting the chat with a specific query
+                hasGreeted = true;
+                
                 // Open chatbot window
                 if (!isOpen) {
                     open();
@@ -340,8 +343,11 @@ REGLAS DE COMPORTAMIENTO:
                 history: chatHistory.slice(-10)
             })
         })
-        .then(res => {
-            if (!res.ok) throw new Error('Vercel API returned an error');
+        .then(async res => {
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`Vercel API error (${res.status}): ${errText}`);
+            }
             return res.json();
         })
         .then(data => {
