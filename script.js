@@ -416,23 +416,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            const message = `*SOLICITUD DE PRESUPUESTO — NEXO DIGITAL*\n\n` +
-                `👤 *Contacto:* ${data.nw_nombre_contacto}\n` +
-                `📞 *WhatsApp:* ${data.nw_whatsapp}\n` +
-                `🏢 *Empresa:* ${data.nw_empresa}\n` +
-                `🗂️ *Rubro:* ${data.nw_rubro}\n` +
-                `📝 *Descripción:* ${data.nw_descripcion}\n\n` +
-                `🌐 *Instagram:* ${data.nw_instagram || 'No especifica'}\n` +
-                `📘 *Facebook:* ${data.nw_facebook || 'No especifica'}\n\n` +
-                `🎨 *Material Visual:*\n` +
-                `• ¿Tiene logo?: ${data.nw_tiene_logo === 'si' ? 'Sí' : 'No, necesita diseño'}\n` +
-                (data.nw_tiene_logo === 'si' && logoUrl ? `• Logo subido: ${logoUrl}\n` : '') +
-                `• Enlace a fotos adicionales: ${data.nw_links_fotos || 'No proporciona'}\n\n` +
-                `📐 *Diseño & Referencias:*\n` +
-                `• ¿Tiene colores?: ${data.nw_tiene_colores === 'si' ? 'Sí: ' + (data.nw_color_primario || '') : 'No, prefiere propuesta'}\n` +
-                `• Web de referencia: ${data.nw_webs_referencia || 'Ninguna'}\n\n` +
-                `💬 *Comentarios:* ${data.nw_adicional || 'Ninguno'}\n` +
-                `🔍 *Nos conoció por:* ${data.nw_como_conociste || 'No especifica'}`;
+            let message = '';
+            if (data.servicio === 'boceto-gratis') {
+                message = `*SOLICITUD DE BOCETO GRATIS — NEXO DIGITAL*\n\n` +
+                    `👤 *Nombre:* ${data.nw_nombre_contacto}\n` +
+                    `📧 *Email:* ${data.nw_email || 'No especifica'}\n` +
+                    `📞 *WhatsApp:* ${data.nw_whatsapp}\n` +
+                    `🌐 *Web/Instagram:* ${data['web-ig'] || 'No especifica'}\n\n` +
+                    `📝 *Detalle del Proyecto:* ${data.nw_descripcion}\n\n` +
+                    `🎁 *Esta solicitud incluye un boceto de diseño inicial sin compromiso.*`;
+            } else {
+                message = `*SOLICITUD DE PRESUPUESTO — NEXO DIGITAL*\n\n` +
+                    `👤 *Contacto:* ${data.nw_nombre_contacto}\n` +
+                    `📞 *WhatsApp:* ${data.nw_whatsapp}\n` +
+                    (data.nw_email ? `📧 *Email:* ${data.nw_email}\n` : '') +
+                    `🏢 *Empresa:* ${data.nw_empresa}\n` +
+                    `🗂️ *Rubro:* ${data.nw_rubro}\n` +
+                    `📝 *Descripción:* ${data.nw_descripcion}\n\n` +
+                    `🌐 *Servicio:* ${document.getElementById('servicio') ? document.getElementById('servicio').options[document.getElementById('servicio').selectedIndex].text : 'No especificado'}\n` +
+                    `🌐 *Instagram:* ${data.nw_instagram || 'No especifica'}\n` +
+                    (data['web-ig'] ? `🔗 *Web/IG adicional:* ${data['web-ig']}\n` : '') +
+                    `📘 *Facebook:* ${data.nw_facebook || 'No especifica'}\n\n` +
+                    `🎨 *Material Visual:*\n` +
+                    `• ¿Tiene logo?: ${data.nw_tiene_logo === 'si' ? 'Sí' : 'No, necesita diseño'}\n` +
+                    (data.nw_tiene_logo === 'si' && logoUrl ? `• Logo subido: ${logoUrl}\n` : '') +
+                    `• Enlace a fotos adicionales: ${data.nw_links_fotos || 'No proporciona'}\n\n` +
+                    `📐 *Diseño & Referencias:*\n` +
+                    `• ¿Tiene colores?: ${data.nw_tiene_colores === 'si' ? 'Sí: ' + (data.nw_color_primario || '') : 'No, prefiere propuesta'}\n` +
+                    `• Web de referencia: ${data.nw_webs_referencia || 'Ninguna'}\n\n` +
+                    `💬 *Comentarios:* ${data.nw_adicional || 'Ninguno'}\n` +
+                    `🔍 *Nos conoció por:* ${data.nw_como_conociste || 'No especifica'}`;
+            }
 
             const encodedText = encodeURIComponent(message);
             const waUrl = `https://wa.me/5493795051607?text=${encodedText}`;
