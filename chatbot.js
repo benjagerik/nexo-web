@@ -18,8 +18,7 @@ REGLAS DE COMPORTAMIENTO:
 
     const responses = {
         greeting: {
-            text: '¡Hola! 👋 Soy **Nexo Bot**, el asistente con Inteligencia Artificial de **Nexo Digital**.\n\n¿Querés maximizar tus ventas y automatizar tu negocio? Contame a qué rubro te dedicás y te diré algunas recomendaciones clave para mejorar tu facturación.',
-            quickReplies: ['Boceto Gratis 🎁', 'Ver Servicios 🖥️', 'Precios 💰']
+            text: '¡Hola! 👋 Soy **Nexo Bot**, el asistente con Inteligencia Artificial de **Nexo Digital**.\n\n¿Querés maximizar tus ventas y automatizar tu negocio? Contame a qué rubro te dedicás y te diré algunas recomendaciones clave para mejorar tu facturación.'
         },
         servicios: {
             text: 'Ofrecemos estos servicios profesionales en toda la Argentina:\n\n🖥️ **Sitios Web a Medida** — Diseño único para tu marca\n🚀 **Landing Pages** — Reservas y captación de clientes\n🛒 **Tiendas Online** — E-commerce y carrito de compras\n🔄 **Rediseño Web** — Actualizá tu página obsoleta\n🤖 **Chatbots** — Atención automática 24/7\n🏆 **App de Puntos** — Sistemas de fidelización\n\n¿Sobre cuál querés más info?',
@@ -336,7 +335,7 @@ REGLAS DE COMPORTAMIENTO:
                 'profesional': 'profesional/servicios 💼', 'abogado': 'profesional/servicios 💼', 'contador': 'profesional/servicios 💼', 'medico': 'profesional/servicios 💼', 'médico': 'profesional/servicios 💼', 'consultor': 'profesional/servicios 💼',
                 'puntos': 'app de puntos', 'fideliza': 'app de puntos',
                 'boceto': 'boceto gratis 🎁', 'muestra': 'boceto gratis 🎁', 'gratis': 'boceto gratis 🎁',
-                'vendo': 'otros rubros', 'creo': 'otros rubros', 'fabric': 'otros rubros', 'hago': 'otros rubros', 'tengo': 'otros rubros', 'produc': 'otros rubros', 'vent': 'otros rubros', 'pelota': 'otros rubros', 'futbol': 'otros rubros',
+                'vend': 'otros rubros', 'cre': 'otros rubros', 'fabric': 'otros rubros', 'hac': 'otros rubros', 'hag': 'otros rubros', 'teng': 'otros rubros', 'prod': 'otros rubros', 'dedic': 'otros rubros', 'ofrec': 'otros rubros', 'trabaj': 'otros rubros', 'comerc': 'otros rubros', 'negoc': 'otros rubros', 'local': 'otros rubros', 'tienda': 'otros rubros', 'taller': 'otros rubros', 'pyme': 'otros rubros', 'empresa': 'otros rubros', 'marca': 'otros rubros', 'emprend': 'otros rubros', 'pelota': 'otros rubros', 'futbol': 'otros rubros', 'pantufla': 'otros rubros',
                 'gracias': null, 'thanks': null
             };
 
