@@ -18,38 +18,38 @@ def obtener_mensaje(prospecto):
     
     templates = {
         "chatbot_whatsapp": (
-            f"¡Hola equipo de {name}! Soy de acá de Corrientes. Veo que tienen mucha demanda (¡felicitaciones!). "
+            f"¡Hola equipo de {name}! ¿Cómo están? Veo que tienen mucha demanda (¡felicitaciones!). "
             f"Me imagino que los fines de semana el WhatsApp explota preguntando precios y horarios. Armé un boceto gratis de un "
             f"'Nexo Bot' que responde esas preguntas automáticamente al instante. ¿Les gustaría que les mande un "
             f"videíto de 1 minuto mostrando cómo funciona? Capaz les ahorra mucho tiempo."
         ),
         "seo_google": (
-            f"¡Hola! Qué tal. Soy especialista en páginas web acá en Corrientes. Vi que tienen muy buenas reseñas en Google, "
+            f"¡Hola! ¿Qué tal? Soy especialista en páginas web en Argentina. Vi que tienen muy buenas reseñas en Google, "
             f"pero noté que no tienen una página web propia enlazada. Hoy en día los clientes buscan en Google y van al "
             f"primer lugar que tiene una web clara. Armé un boceto/muestra de diseño inicial 100% gratuito de cómo se vería su "
             f"página web para que vean el cambio. ¿Les gustaría que se las pase sin compromiso?"
         ),
         "landing_turnos": (
-            f"¡Hola equipo de {name}! Soy desarrollador web acá en Corrientes. Estuve viendo su perfil y me encantó su trabajo. "
+            f"¡Hola equipo de {name}! ¿Cómo están? Estuve viendo su perfil y me encantó su trabajo. "
             f"Sé que coordinar turnos por mensaje toma mucho tiempo y a veces se pierden clientes. Armé un boceto de diseño inicial "
             f"gratuito de una landing de reservas online donde sus clientes pueden agendar su turno en 3 clics las 24 hs. "
             f"¿Les paso el link para que lo miren sin compromiso?"
         ),
         "landing_inscripcion": (
-            f"¡Hola equipo de {name}! Soy desarrollador web de Corrientes. Estaba viendo su perfil y se ve genial la comunidad "
+            f"¡Hola equipo de {name}! ¿Cómo están? Estaba viendo su perfil y se ve genial la comunidad "
             f"que tienen. Se me ocurrió que para lanzar sus clases especiales o promociones les serviría mucho tener una "
             f"landing page ultra rápida. Armé un boceto de diseño gratis de cómo se vería para registrar alumnos directo a su "
             f"WhatsApp. ¿Les gustaría que les pase el link de la muestra para que lo miren?"
         ),
         "ecommerce_menu": (
-            f"¡Hola equipo de {name}! Soy de Corrientes. Siempre escucho excelentes recomendaciones de sus platos. "
+            f"¡Hola equipo de {name}! ¿Cómo están? Siempre escucho excelentes recomendaciones de sus platos. "
             f"Vi que están en PedidosYa, pero me imagino que las comisiones les comen gran parte de la ganancia. "
             f"Armé un boceto de un menú digital interactivo propio con carrito de compras para que sus clientes les compren directo a su "
             f"WhatsApp sin pagar comisiones. ¿Les paso el link para que vean cómo funciona? Es gratis y sin compromiso."
         )
     }
     
-    return templates.get(angle, f"¡Hola equipo de {name}! ¿Cómo están? Quería comentarles sobre Nexo Digital y nuestro boceto gratis...")
+    return templates.get(angle, f"¡Hola equipo de {name}! ¿Cómo están? Quería comentarles sobre Nexo Digital y nuestro boceto de diseño gratis...")
 
 def generar_dashboard():
     prospectos = cargar_prospectos()
