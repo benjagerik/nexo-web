@@ -161,8 +161,32 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
     background:var(--gradient-main); transition:var(--transition); border-radius:2px;
 }
 .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.nav-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(37, 211, 102, 0.08);
+    border: 1px solid rgba(37, 211, 102, 0.25);
+    color: #25d366;
+    transition: var(--transition);
+}
+.nav-whatsapp:hover {
+    background: #25d366;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+}
 .nav-cta {
-    padding:10px 22px; border-radius:10px; font-size:0.85rem; font-weight:600;
+    padding: 10px 22px; border-radius: 10px; font-size: 0.85rem; font-weight: 600;
     background:var(--gradient-main); color:#fff;
     transition:var(--transition);
     box-shadow:0 2px 12px rgba(99,102,241,0.25);
@@ -261,7 +285,6 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
 /* ══════════ SERVICES ══════════ */
 .services { padding:120px 0; position:relative; }
 .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
-.services-grid .service-card:nth-child(5) { grid-column: 1 / -1; max-width:calc(50% - 12px); justify-self:center; }
 .service-card {
     position:relative; padding:40px 32px; border-radius:var(--radius);
     background:var(--bg-card); border:1px solid var(--border-subtle);
@@ -906,47 +929,51 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
 
 /* ── Floating WhatsApp Button ── */
 .whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 60px;
-    height: 60px;
-    background: #25d366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    z-index: 999;
-    transition: var(--transition);
-}
-.whatsapp-float:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-    background: #20bd5a;
+    display: none !important;
 }
 .whatsapp-float-pulse {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid #25d366;
-    animation: whatsappPulse 2s linear infinite;
-    pointer-events: none;
-    box-sizing: border-box;
+    display: none !important;
 }
-@keyframes whatsappPulse {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.5); opacity: 0; }
+
+/* ── Gemini-style Sparkle Badge ── */
+.gemini-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc, #f472b6, #38bdf8);
+    background-size: 400% 400%;
+    animation: geminiGradient 8s ease infinite, geminiPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.gemini-sparkle {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+@keyframes geminiGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes geminiPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(192, 132, 252, 0.4); }
+    50% { transform: scale(1.04); box-shadow: 0 0 14px rgba(192, 132, 252, 0.6); }
 }
 
 @media (max-width: 768px) {
     .adaptive-grid { grid-template-columns: 1fr; gap: 32px; }
     .adaptive-visual { height: 350px; }
-    .whatsapp-float { bottom: 20px; left: 20px; width: 50px; height: 50px; }
 }
 
 /* ══════════ ANIMATIONS ══════════ */
@@ -993,11 +1020,6 @@ button,input,select,textarea { font-family:inherit; font-size:inherit; }
         flex: 0 0 280px !important;
         scroll-snap-align: center !important;
         margin: 0 !important;
-    }
-    .services-grid .service-card:nth-child(5) {
-        grid-column: auto !important;
-        max-width: 280px !important;
-        justify-self: auto !important;
     }
     .portfolio-grid {
         display: flex !important;

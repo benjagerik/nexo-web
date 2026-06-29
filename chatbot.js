@@ -189,6 +189,17 @@ REGLAS DE COMPORTAMIENTO:
             });
         }
 
+        // Connect featured chatbot service card to open chat
+        const chatbotServiceCard = document.querySelector('.service-card-featured');
+        if (chatbotServiceCard) {
+            chatbotServiceCard.addEventListener('click', (e) => {
+                // Avoid triggering if clicking an internal link
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    if (!isOpen) open();
+                }
+            });
+        }
+
         // Show badge after 2 seconds
         setTimeout(() => {
             if (!isOpen) badge.classList.add('visible');
