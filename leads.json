@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "name": "Doña Koca",
+        "niche": "restaurante",
+        "phone": "5493794010203",
+        "instagram": "donakoca_ctes",
+        "problem": "WhatsApp colapsado los fines de semana, menú en PDF pesado.",
+        "angle": "chatbot_whatsapp"
+    },
+    {
+        "id": 2,
+        "name": "Parrilla El Ombú",
+        "niche": "parrilla",
+        "phone": "5493794040506",
+        "instagram": "parrilla_elombu",
+        "problem": "Excelente comida pero no aparecen primeros en Google para turistas.",
+        "angle": "seo_google"
+    },
+    {
+        "id": 3,
+        "name": "Bella Estética",
+        "niche": "estetica",
+        "phone": "5493794070809",
+        "instagram": "bellaestetica.ctes",
+        "problem": "Reservas de turnos manuales por mensaje, se pierden citas por demoras.",
+        "angle": "landing_turnos"
+    },
+    {
+        "id": 4,
+        "name": "Fit Zone Gym",
+        "niche": "gimnasio",
+        "phone": "5493794112233",
+        "instagram": "fitzone_corrientes",
+        "problem": "Falta de landing page para capturar inscripciones a clases especiales.",
+        "angle": "landing_inscripcion"
+    },
+    {
+        "id": 5,
+        "name": "Pizzería La Redonda",
+        "niche": "pizzeria",
+        "phone": "5493794445566",
+        "instagram": "laredonda_pizzas",
+        "problem": "Pagan altas comisiones en PedidosYa, WhatsApp lento para tomar pedidos.",
+        "angle": "ecommerce_menu"
+    },
+    {
+        "id": 6,
+        "name": "La Cueva Barber",
+        "niche": "barberia",
+        "phone": "543794008337",
+        "instagram": "lacuevabarber",
+        "problem": "Peluquería de caballeros con reservas manuales por mensaje.",
+        "angle": "landing_turnos"
+    },
+    {
+        "id": 7,
+        "name": "Divinas Centro de Belleza",
+        "niche": "estetica",
+        "phone": "543794601057",
+        "instagram": "divinascentrodebelleza",
+        "problem": "Centro de estética destacado en San Lorenzo 467 con agenda manual.",
+        "angle": "landing_turnos"
+    },
+    {
+        "id": 8,
+        "name": "El 10 Burgers",
+        "niche": "hamburgueseria",
+        "phone": "5493794012476",
+        "instagram": "el10burgers",
+        "problem": "Excelente menú gastronómico pero sin sistema de pedidos propio.",
+        "angle": "ecommerce_menu"
+    },
+    {
+        "id": 9,
+        "name": "Eres Estética y Salud",
+        "niche": "estetica",
+        "phone": "543794462222",
+        "instagram": "eresesteticaysalud",
+        "problem": "Turnos manuales y alta competencia de estética en Entre Ríos 1487.",
+        "angle": "landing_turnos"
+    }
+]
