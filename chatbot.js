@@ -162,6 +162,33 @@ REGLAS DE COMPORTAMIENTO:
             });
         }
 
+        // Connect hero AI search bar
+        const heroInput = document.getElementById('hero-ai-input');
+        const heroSubmit = document.getElementById('hero-ai-submit');
+
+        if (heroInput && heroSubmit) {
+            const handleHeroSearch = () => {
+                const text = heroInput.value.trim();
+                if (!text) return;
+                
+                heroInput.value = '';
+                
+                // Open chatbot window
+                if (!isOpen) {
+                    open();
+                }
+                
+                // Send query to chatbot
+                addMessage(text, 'user');
+                processInput(text);
+            };
+
+            heroSubmit.addEventListener('click', handleHeroSearch);
+            heroInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleHeroSearch();
+            });
+        }
+
         // Show badge after 2 seconds
         setTimeout(() => {
             if (!isOpen) badge.classList.add('visible');
@@ -206,6 +233,27 @@ REGLAS DE COMPORTAMIENTO:
 
     function processInput(text) {
         const key = text.toLowerCase().trim();
+
+        // Special actions (Redirections and Scrolls)
+        if (key.includes('abrir whatsapp') || (key.includes('whatsapp') && !key.includes('precios') && !key.includes('beneficio') && !key.includes('obtengo'))) {
+            addMessage('¡Te redirijo a WhatsApp! 📱', 'bot');
+            setTimeout(() => window.open('https://wa.me/5493795051607', '_blank'), 1000);
+            return;
+        }
+        if (key.includes('abrir instagram') || key.includes('instagram')) {
+            addMessage('¡Te redirijo a Instagram! 📸', 'bot');
+            setTimeout(() => window.open('https://www.instagram.com/nexodigital_arg/', '_blank'), 1000);
+            return;
+        }
+        if (key.includes('formulario') || key === 'ir al formulario') {
+            addMessage('¡Te llevo al formulario! 📝', 'bot');
+            setTimeout(() => {
+                close();
+                document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+            return;
+        }
+
         // Add user message to history
         chatHistory.push({ sender: 'user', text: text });
 
