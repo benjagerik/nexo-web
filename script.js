@@ -129,7 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Three.js 3D Background ──
     const canvas = document.getElementById('bg3d');
-    if (canvas && typeof THREE !== 'undefined') {
+    const isMobile = window.innerWidth < 768;
+    if (canvas && typeof THREE !== 'undefined' && !isMobile) {
         let scene, camera, renderer, objects = [];
         let mouseX = 0, mouseY = 0;
         let targetX = 0, targetY = 0;
