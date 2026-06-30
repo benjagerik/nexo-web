@@ -282,7 +282,7 @@ REGLAS DE COMPORTAMIENTO:
                 parts: [{ text: item.text }]
             }));
 
-            fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${localKey}`, {
+            fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${localKey}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
